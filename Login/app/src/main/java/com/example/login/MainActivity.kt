@@ -94,8 +94,7 @@ fun SignInScreen() {
                             label = { Text("Senha") },
                             placeholder = { Text(text = "Digite a senha") },
                             singleLine = true,
-                            visualTransformation = if (passwordVisibility.value) VisualTransformation.None
-                            else PasswordVisualTransformation()
+                            visualTransformation = PasswordVisualTransformation()
                         )
 
                         Spacer(modifier = Modifier.padding(10.dp))
