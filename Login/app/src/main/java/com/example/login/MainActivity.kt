@@ -51,14 +51,14 @@ fun SignInScreen() {
                 contentDescription = "App Logo",
                 modifier = Modifier
                     .weight(1f)
-                    .size(200.dp),
+                    .size(180.dp),
                 colorFilter = ColorFilter.tint(Color.White)
             )
             Card(
                 Modifier
                     .weight(2f)
-                    .padding(8.dp),
-                shape = RoundedCornerShape(12.dp)
+                    .padding(12.dp),
+                shape = RoundedCornerShape(30.dp)
             ) {
                 Column(
                     Modifier
@@ -85,7 +85,9 @@ fun SignInScreen() {
                             onValueChange = { emailValue.value = it },
                             label = { Text(text = "E-mail") },
                             placeholder = { Text(text = "Digite o email") },
-                            singleLine = true
+                            singleLine = true,
+                            modifier = Modifier
+                                .fillMaxWidth(1f)
                         )
 
                         OutlinedTextField(
@@ -94,28 +96,40 @@ fun SignInScreen() {
                             label = { Text("Senha") },
                             placeholder = { Text(text = "Digite a senha") },
                             singleLine = true,
-                            visualTransformation = PasswordVisualTransformation()
+                            visualTransformation = if (passwordVisibility.value) VisualTransformation.None
+                            else PasswordVisualTransformation(),
+                            modifier = Modifier
+                                .fillMaxWidth(1f)
                         )
 
                         Spacer(modifier = Modifier.padding(10.dp))
 
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),Arrangement.SpaceBetween
+                        ){
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Checkbox(checked = true, onCheckedChange = {})
+                                Text(text = "Guardar senha",fontSize = 12.sp)
+                            }
+                            TextButton(onClick = { /*TODO*/ }) {
+                                Text(text = "Esqueceu a senha?",fontSize = 12.sp)
+                            }
+
+                        }
+
                         Button(onClick = {},
                             modifier = Modifier
-                                .fillMaxWidth(0.9f)
+                                .fillMaxWidth(1f)
                                 .height(60.dp)) {
                             Text(text = "Entrar", fontWeight = FontWeight.Bold, fontSize = 20.sp)
                         }
 
                         Spacer(modifier = Modifier.padding(20.dp))
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ) {
-                            TextButton(onClick = {}) {
+
+                        Row(modifier = Modifier.fillMaxWidth(),Arrangement.Center,verticalAlignment = Alignment.CenterVertically) {
+                            Text(text = "Não tem conta?",fontSize = 14.sp)
+                            TextButton(onClick = { /*TODO*/ }) {
                                 Text(text = "Cadastrar")
-                            }
-                            TextButton(onClick = { }) {
-                                Text(text = "Esqueceu a senha?", color = Color.Gray)
                             }
                         }
 
